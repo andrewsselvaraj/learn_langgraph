@@ -1,0 +1,24 @@
+# Maven / Java
+target/
+*.class
+*.log
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# Secrets
+.env
+*.env
+application-secrets.properties
+
+# Python (in case notebooks/scripts are added)
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
