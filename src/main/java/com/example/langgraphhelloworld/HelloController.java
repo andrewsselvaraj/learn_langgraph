@@ -1,7 +1,11 @@
 package com.example.langgraphhelloworld;
 
+import java.net.URI;
+
 import org.springframework.http.MediaType;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +27,12 @@ public class HelloController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "message must not be blank");
         }
         return new ChatResponse(helloWorldGraph.chat(request.message()));
+    }
+
+    // Opening /chat in a browser sends a GET; send it to the chat page instead of a 405.
+    @GetMapping("/chat")
+    public ResponseEntity<Void> chatPage() {
+        return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("/")).build();
     }
 
     public record ChatRequest(String message) {
